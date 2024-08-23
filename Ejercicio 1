@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class Calculadora {
+
+    public static class OperacionNoValidaException extends Exception {
+        public OperacionNoValidaException(String message) {
+            super(message);
+        }
+    }
+
+    private static void verificarNumeroDeOperandos(double[] operandos) throws OperacionNoValidaException {
+        if (operandos.length < 2) {
+            throw new OperacionNoValidaException("Se necesitan al menos dos números para la operación.");
+        }
+    }
+
+    public double sumar(double... operandos) throws OperacionNoValidaException {
+        verificarNumeroDeOperandos(operandos);
+        double resultado = 0;
+        for (double operando : operandos) {
+            resultado += operando;
+        }
+        return resultado;
+    }
+
+    // ... otros métodos de operaciones (restar, multiplicar, etc.)
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Calculadora calculadora = new Calculadora();
+
+        while (true) {
+            // ... menú de opciones
+
+            try {
+                // ... realizar la operación
+            } catch (OperacionNoValidaException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+}
