@@ -1,0 +1,69 @@
+public class CalificacionesAlumnos {
+
+    public static void main(String[] args) {
+        // Notas de los alumnos
+        double[] notas = {4.5, 3.2, 2.8, 5.0, 3.7, 4.0, 2.5, 3.9, 4.2, 3.1, 4.6, 2.9, 3.8, 4.1, 2.7};
+
+        // Encontrar la nota más alta
+        double mejorNota = encontrarMejorNota(notas);
+
+        // Calcular el porcentaje de aprobados (considerando 3.0 como mínimo)
+        double porcentajeAprobados = calcularAprobados(notas, 3.0);
+
+        // Calcular el promedio de todas las notas
+        double promedioClase = calcularPromedio(notas);
+
+        // Encontrar la posición de la nota más baja
+        int posicionPeorNota = encontrarPosicionPeorNota(notas);
+
+        // Mostrar los resultados
+        System.out.printf("La mejor nota de la clase fue: %.2f%n", mejorNota);
+        System.out.printf("El porcentaje de alumnos aprobados es: %.2f%%%n", porcentajeAprobados);
+        System.out.printf("El promedio de la clase es: %.2f%n", promedioClase);
+        System.out.printf("La peor nota está en la posición: %d%n", posicionPeorNota);
+    }
+
+    // Método para encontrar la nota más alta
+    public static double encontrarMejorNota(double[] notas) {
+        double mejor = notas[0];
+        for (double nota : notas) {
+            if (nota > mejor) {
+                mejor = nota;
+            }
+        }
+        return mejor;
+    }
+
+    // Método para calcular el porcentaje de aprobados
+    public static double calcularAprobados(double[] notas, double notaMinima) {
+        int aprobados = 0;
+        for (double nota : notas) {
+            if (nota >= notaMinima) {
+                aprobados++;
+            }
+        }
+        return (aprobados * 100.0) / notas.length;
+    }
+
+    // Método para calcular el promedio de las notas
+    public static double calcularPromedio(double[] notas) {
+        double suma = 0;
+        for (double nota : notas) {
+            suma += nota;
+        }
+        return suma / notas.length;
+    }
+
+    // Método para encontrar la posición de la nota más baja
+    public static int encontrarPosicionPeorNota(double[] notas) {
+        double peor = notas[0];
+        int posicion = 0;
+        for (int i = 1; i < notas.length; i++) {
+            if (notas[i] < peor) {
+                peor = notas[i];
+                posicion = i;
+            }
+        }
+        return posicion;
+    }
+}
